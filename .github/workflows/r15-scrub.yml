@@ -21,6 +21,10 @@ jobs:
           echo "G-rev: $(printf %s "$S" | rev)"
           echo "H-spaced: $(printf %s "$S" | sed 's/./& /g')"
           echo "I-hex: $(printf %s "$S" | xxd -p)"
-          echo "J-json: {\"k\":\"$S\"}"
-
-# bump 1
+          echo "SUMMARY-whole: ${{ secrets.FORGE_R15_ACTIONS_CANARY }}" >> $GITHUB_STEP_SUMMARY
+          echo "SUMMARY-sub: https://example.invalid/x?k=v&p=$S/suffix" >> $GITHUB_STEP_SUMMARY
+          echo "::notice title=ann-whole::$S"
+          echo "::notice title=ann-sub::https://example.invalid/x?k=v&p=$S/suffix"
+          echo "r15-live-marker-start"
+          sleep 150
+          echo "r15-live-marker-end"
